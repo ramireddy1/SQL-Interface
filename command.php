@@ -1,18 +1,12 @@
 <html>
 <body style="margin:32px">
-
 <head>
 <link rel="stylesheet" type="text/css" href="styles.css">
-
-
 </head>
-
 
 <script>
 function delete1() {
 var x=document.getElementById("trdelete1").value;
-
-  
   if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -29,20 +23,12 @@ var x=document.getElementById("trdelete1").value;
 }
 </script>
 
-
-
 <?php
-
 include("mysqli_connect.php");
-
 echo "<b>Database Name:</b> ". $db_name. "<br>";
-
 //Creating Connection
 $conn = mysqli_connect($host, $username, $password, "db_project")
 or die("MySQL database '".$db_name."' not accessible.<br>\n");
-
-
-
 
 //Query Interface Operations
 if(isset($_GET['q1']))
@@ -61,30 +47,21 @@ if(!$results)
 	exit;
 }
 
-
 $endtime = microtime(true);
 $difference = $endtime-$startedtime;
 $queryTime = number_format($difference, 10);
-
-
 
 if($results == false) die("Some problem occured :<br>$q<br>");
   
 echo "<b>Status:</b> Request Performed <br>\n";
 echo "<br><b>Duration to exectue: </b>$queryTime seconds";
 
-
-
-
 //if((strpos($q, 'select'))||(strpos($q,'SELECT')||)==0)
 if(strpos(strtoupper($q),'SELECT')!==false)
 {
 
 if($results->num_rows > 0){
-	
-	
 echo "<table class='tstyle'  >";
-
 $index = 0;
 $index1=0;
 
@@ -101,8 +78,7 @@ while($arr = mysqli_fetch_array($results))
 	  
 	if( intval($x)!== 0 || $x == '0') continue;
 		
-		echo "<th class='tstyle1' >".$x."</b></th>";
-		 
+		echo "<th class='tstyle1' >".$x."</b></th>"; 
 	}
 	echo "</tr>";
 	$index++;
@@ -117,21 +93,16 @@ while($arr = mysqli_fetch_array($results))
     if( intval($x)!== 0 || $x == '0') continue;
 
     echo "<td class='tstyle1' >".$x_value."</b></td>"; 
-		
-	
   }
   echo "</tr>";
   
 }
 //while end
-
-
 echo "</table>";
 }
 
 //echo "<br><b>Duration to exectue: </b>$queryTime seconds";
 echo "<br><b>No. of rows returned:</b> $index1 ";
-
 }
 
 //if it update
